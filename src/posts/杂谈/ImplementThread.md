@@ -147,13 +147,10 @@ public ThreadPoolExecutor(
 
 ### 线程池的执行顺序
 
-提交任务 → 若线程数 < `corePoolSize` → 新建线程执行。
-
+提交任务 → 若当前线程数 < `corePoolSize` → 新建线程执行。
 否则将任务放入 `workQueue`。
-
 若队列满且线程数 < `maximumPoolSize` → 新建非核心线程执行。
-
-若线程数已达 `maximumPoolSize` 且队列满 → 执行 `handler`（拒绝策略）。
+若线程数已达 `maximumPoolSize` 且队列满 → 触发 `handler`（拒绝策略）。
 ### 多线程打印0-200
 
 ```java
