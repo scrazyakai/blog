@@ -1,12 +1,12 @@
 ---
-title: 大文件上传
+title: MyBatis插件加密、解密敏感信息
 date: 2025/11/18
 categories:
 - 杂谈
 tags:
 - MyBatis插件
 ---
-# 写个MyBatis插件
+# MyBatis插件
 
 ## 创建Demo项目
 
