@@ -29,6 +29,12 @@ export default sidebar({
       children: "structure",
     },
     {
+      text: "面试准备",
+      icon: "book",
+      prefix: "posts/面试准备/",
+      children: "structure",
+    },
+    {
       text: "其他",
       icon: "book",
       prefix: "posts/其他/",
