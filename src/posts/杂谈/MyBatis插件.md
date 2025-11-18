@@ -1,8 +1,16 @@
+---
+title: 大文件上传
+date: 2025/11/18
+categories:
+- 杂谈
+tags:
+- MyBatis插件
+---
 # 写个MyBatis插件
 
 ## 创建Demo项目
 
-![image-20251118213251462](C:\Users\Kai Ge\AppData\Roaming\Typora\typora-user-images\image-20251118213251462.png)
+![image-mybatisplug1.png](../../.vuepress/public/images/image-mybatisplug1.png)
 
 版本选择
 
