@@ -11,7 +11,10 @@ tags:
 ---
 
 # 基于Redis+ES的高效LBS
-
+## 实现思路
+```aiignore
+用户 → Redis GEO 筛选附近用户 → ES 排序（标签+距离+活跃时间） → 返回结果
+```
 ## 引入依赖
 
 :warning: ES版本是8.18.2​
