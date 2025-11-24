@@ -19,7 +19,8 @@ tags:
 从小到大排序，主要目标对象还是附近的人所以先用Redis筛选附近的人
 ## 引入依赖
 
-:warning: ES版本是8.18.2​
+!!! warning
+    ES版本是8.18.2
 
 ```xml
 <dependencies>
