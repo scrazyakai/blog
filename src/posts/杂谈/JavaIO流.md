@@ -1,11 +1,11 @@
-```
+---
 title: IO流
 date: 2025/10/2
 categories:
  - 杂谈
 tags:
  - IO流
-```
+---
 # JavaIO流
 ## IO
 * O是Input和Output，以内存为界限，Input是从外界读取诗句到内存，Output是从内存中取出数据到外界。
