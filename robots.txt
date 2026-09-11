@@ -1,4 +1,4 @@
 User-agent:*
 Disallow:
 
-Sitemap: https://scrazyakai.github.io/blog/sitemap.xml
+Sitemap: https://scrazyakai.github.io/blog/blog/sitemap.xml
