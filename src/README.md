@@ -2,7 +2,7 @@
 pageLayout: home
 title: 主页
 config:
-  - type: banner
+  - type: HomeBannerProfile
     full: true
     banner: /background.png
     bannerMask:
@@ -19,8 +19,8 @@ config:
         - text: 文章分类
           link: /posts/categories/
           theme: alt
-  - type: profile
-    name: Recursion
-    description: 一个后端开发者
-    avatar: /lxh_71.gif
+    profile:
+      name: Recursion
+      description: 一个后端开发者
+      avatar: /lxh_71.gif
 ---
