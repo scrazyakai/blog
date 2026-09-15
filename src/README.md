@@ -23,4 +23,5 @@ config:
       name: Recursion
       description: 一个后端开发者
       avatar: /lxh_71.gif
+      github: scrazyakai
 ---
