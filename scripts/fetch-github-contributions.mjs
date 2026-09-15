@@ -7,8 +7,12 @@ const outputPath = resolve("src/.vuepress/data/github-contributions.ts");
 
 const query = `
   query ($login: String!) {
+    viewer {
+      login
+    }
     user(login: $login) {
       contributionsCollection {
+        restrictedContributionsCount
         contributionCalendar {
           totalContributions
           weeks {
@@ -63,7 +67,13 @@ try {
     throw new Error(result.errors[0].message);
   }
 
-  const calendar = result.data?.user?.contributionsCollection?.contributionCalendar;
+  const viewerLogin = result.data?.viewer?.login;
+  if (viewerLogin?.toLowerCase() !== login.toLowerCase()) {
+    throw new Error(`Token 属于 ${viewerLogin || "未知账号"}，需要使用 ${login} 的 Token`);
+  }
+
+  const collection = result.data?.user?.contributionsCollection;
+  const calendar = collection?.contributionCalendar;
   if (!calendar?.weeks?.length) {
     throw new Error(`没有找到 GitHub 用户 ${login} 的贡献数据`);
   }
@@ -82,7 +92,10 @@ try {
     outputPath,
     `// 此文件由 scripts/fetch-github-contributions.mjs 自动生成。\nexport const githubContributions = ${JSON.stringify(data, null, 2)} as const;\n`,
   );
-  console.log(`已更新 ${login} 的 GitHub 贡献数据，共 ${data.totalContributions} 次贡献。`);
+  console.log(
+    `已更新 ${login} 的 GitHub 贡献数据，共 ${data.totalContributions} 次贡献` +
+      `（受限贡献：${collection.restrictedContributionsCount}）。`,
+  );
 } catch (error) {
   if (!(await hasCachedData())) throw error;
   console.warn(`GitHub 贡献数据更新失败，继续使用仓库缓存：${error.message}`);

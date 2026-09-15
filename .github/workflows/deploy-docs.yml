@@ -36,7 +36,8 @@ jobs:
       - name: 构建文档
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          # 独立 Token 需属于 GITHUB_LOGIN，并包含 read:user；未配置时兼容旧 Token。
+          GITHUB_TOKEN: ${{ secrets.CONTRIBUTIONS_TOKEN || secrets.ACCESS_TOKEN }}
           GITHUB_LOGIN: scrazyakai
         run: |-
           npm run docs:build
