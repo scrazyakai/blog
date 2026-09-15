@@ -1,7 +1,7 @@
 ---
 title: JDK8项目中引入千问AI
-icon: pen-to-square
-date: 2025-8-7
+icon: fa6-solid:pen-to-square
+createTime: 2025/08/07 00:00:00
 categories:
  - 项目
 tags:
@@ -103,4 +103,4 @@ public class InterviewController {
 ```
 
 5)Swagger测试
-![alt text](image.png)
+![alt text](./image.png)

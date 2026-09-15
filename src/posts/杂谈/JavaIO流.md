@@ -1,6 +1,6 @@
 ---
 title: IO流
-date: 2025/10/2
+createTime: 2025/10/02 00:00:00
 categories:
  - 杂谈
 tags:

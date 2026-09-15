@@ -1,10 +1,10 @@
 ---
 title: 布局
-icon: object-group
+icon: fa6-solid:object-group
 order: 2
 category:
   - 指南
-tag:
+tags:
   - 布局
 ---
 

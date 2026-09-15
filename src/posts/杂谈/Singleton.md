@@ -1,7 +1,7 @@
 ---
 title: 手写单例模式
-icon: pen-to-square
-date: 2025/10/14
+icon: fa6-solid:pen-to-square
+createTime: 2025/10/14 00:00:00
 categories:
  - 杂谈
 tags:

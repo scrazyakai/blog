@@ -1,10 +1,10 @@
 ---
 title: 布局与功能禁用
-icon: gears
+icon: fa6-solid:gears
 order: 4
 category:
   - 使用指南
-tag:
+tags:
   - 禁用
 
 navbar: false

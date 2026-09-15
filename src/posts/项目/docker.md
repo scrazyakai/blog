@@ -1,7 +1,7 @@
 ---
 title: Docker基本命令
-icon: pen-to-square
-date: 2025-8-2
+icon: fa6-solid:pen-to-square
+createTime: 2025/08/02 00:00:00
 categories:
  - 项目
 tags:

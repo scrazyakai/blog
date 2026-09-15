@@ -1,6 +1,6 @@
 ---
 title: MyBatis插件加密、解密敏感信息
-date: 2025/11/18
+createTime: 2025/11/18 00:00:00
 categories:
 - 杂谈
 tags:

@@ -1,6 +1,6 @@
 ---
 title: 基于Redis+ES的高效LBS
-date: 2025/11/24
+createTime: 2025/11/24 00:00:00
 categories:
  - 面试准备
  - 杂谈
@@ -12,7 +12,7 @@ tags:
 
 # 基于Redis+ES的高效LBS
 ## 实现思路
-```aiignore
+```text
 用户 → Redis GEO 筛选附近用户 → ES 排序（标签+距离+活跃时间） → 返回结果
 ```
 标签相同个数按照从多到少排序，距离按照从近到远排序，活跃时间和当前时间的差
@@ -510,7 +510,7 @@ elasticsearch:
 
 GET
 
-```GET
+```http
 http://localhost:8080/api/user/createIndex
 ```
 
@@ -543,4 +543,3 @@ POST方法的body
 
 测试结果结果：
 ![LBS1.png](../../.vuepress/public/images/LBS1.png)
-

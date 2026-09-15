@@ -1,7 +1,7 @@
 ---
 title: 线程的实现方法
-icon: pen-to-square
-date: 2025/10/15
+icon: fa6-solid:pen-to-square
+createTime: 2025/10/15 00:00:00
 categories:
  - 杂谈
 tags:

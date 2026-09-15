@@ -4,7 +4,7 @@ icon: fa6-brands:markdown
 order: 2
 category:
   - 使用指南
-tag:
+tags:
   - Markdown
 ---
 
@@ -106,13 +106,7 @@ $$
 
 #### 组件
 
-```component VPCard
-title: Mr.Hope
-desc: Where there is light, there is hope
-logo: https://mister-hope.com/logo.svg
-link: https://mister-hope.com
-background: rgba(253, 230, 138, 0.15)
-```
+<LinkCard title="Plume 主题" description="主题文档与配置指南" href="https://theme-plume.vuejs.press/" />
 
 - [查看详情](https://theme-hope.vuejs.press/zh/guide/component/grammar.html)
 

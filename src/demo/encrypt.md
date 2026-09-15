@@ -1,9 +1,11 @@
 ---
-icon: lock
+description: 加密功能演示，请输入密码后阅读。
+icon: fa6-solid:lock
 category:
   - 使用指南
-tag:
+tags:
   - 加密
+passwordHint: "Password: 1234"
 ---
 
 # 密码加密的文章

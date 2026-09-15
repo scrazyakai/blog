@@ -1,7 +1,7 @@
 ---
 title: git常用命令
-icon: pen-to-square
-date: 2025/10/2
+icon: fa6-solid:pen-to-square
+createTime: 2025/10/02 00:00:00
 categories:
  - 杂谈
 tags:

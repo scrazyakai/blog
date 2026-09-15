@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ
-date: 2025/10/28
+createTime: 2025/10/28 00:00:00
 categories:
  - 杂谈
 tags:

@@ -4,18 +4,18 @@ title: 页面配置
 # 你可以自定义封面图片
 cover: /assets/images/cover1.jpg
 # 这是页面的图标
-icon: file
+icon: fa6-solid:file
 # 这是侧边栏的顺序
 order: 3
 # 设置作者
 author: Ms.Hope
 # 设置写作时间
-date: 2020-01-01
+createTime: 2020/01/01 00:00:00
 # 一个页面可以有多个分类
 category:
   - 使用指南
 # 一个页面可以有多个标签
-tag:
+tags:
   - 页面配置
   - 使用指南
 # 此页面会在文章列表置顶
@@ -116,10 +116,4 @@ const MyComponent = defineComponent({
 
 - 一个卡片:
 
-  ```component VPCard
-  title: Mr.Hope
-  desc: Where there is light, there is hope
-  logo: https://mister-hope.com/logo.svg
-  link: https://mister-hope.com
-  background: rgba(253, 230, 138, 0.15)
-  ```
+<LinkCard title="Plume 主题" description="主题文档与配置指南" href="https://theme-plume.vuejs.press/" />

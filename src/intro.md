@@ -1,5 +1,5 @@
 ---
-icon: circle-info
+icon: fa6-solid:circle-info
 cover: /assets/images/cover3.jpg
 ---
 
