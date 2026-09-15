@@ -367,13 +367,17 @@ const dateLabel = (date: string, count: number) =>
 }
 
 .home-banner-profile__day.level-1,
-.home-banner-profile__legend-scale .level-1 { background: #0e4429; }
+.home-banner-profile__legend-scale .level-1 { background: #238b45; }
 .home-banner-profile__day.level-2,
-.home-banner-profile__legend-scale .level-2 { background: #006d32; }
+.home-banner-profile__legend-scale .level-2 { background: #2fb950; }
 .home-banner-profile__day.level-3,
-.home-banner-profile__legend-scale .level-3 { background: #26a641; }
+.home-banner-profile__legend-scale .level-3 { background: #3bd65f; }
 .home-banner-profile__day.level-4,
-.home-banner-profile__legend-scale .level-4 { background: #39d353; }
+.home-banner-profile__legend-scale .level-4 { background: #6bea86; }
+
+.home-banner-profile__day:not(.level-0) {
+  box-shadow: 0 0 3px rgb(57 211 83 / 30%);
+}
 
 .home-banner-profile__legend {
   margin-top: 10px;
