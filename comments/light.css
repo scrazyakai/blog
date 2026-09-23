@@ -1,0 +1,11 @@
+@import url("https://giscus.app/themes/light.css");
+@import url("./transparent.css");
+main {
+  --color-fg-default: #253044;
+  --color-fg-muted: #596579;
+  --color-fg-subtle: #596579;
+  --color-border-default: #a7b1bf;
+  --color-border-muted: #dce1e8;
+  --color-accent-fg: #096dd9;
+  --color-canvas-overlay: #fff;
+}

@@ -1,0 +1,46 @@
+/* Loaded inside the Giscus iframe through its supported custom-theme API. */
+main {
+  --color-canvas-default: transparent;
+  --color-canvas-inset: transparent;
+  --color-canvas-subtle: transparent;
+  --color-btn-bg: transparent;
+  --color-btn-primary-bg: #087f64;
+  --color-btn-primary-hover-bg: #066b54;
+  --color-btn-primary-selected-bg: #066b54;
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-text: #fff;
+  --color-btn-shadow: none;
+  --color-btn-inset-shadow: none;
+  --color-primer-shadow-inset: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+html, body, .gsc-main, .gsc-comment-box, .gsc-comment-box-tabs,
+.gsc-comment-box-main, .gsc-comment-box-write, .gsc-comment-box-textarea,
+.gsc-comment-box-textarea-extras, .gsc-comment-box-preview,
+.gsc-comment-content, .gsc-replies { background: transparent !important; }
+.gsc-main { gap: 24px; }
+.gsc-reactions { align-items: flex-start; gap: 8px; }
+.gsc-reactions-count { text-align: left; font-size: 13px; color: var(--color-fg-muted); }
+.gsc-comment-box:not(.gsc-comment-box-is-reply) { border: 0; }
+.gsc-comment-box-tabs { border: 0; border-radius: 0; margin-bottom: 8px; }
+.gsc-comment-box-tabs button { background: transparent; border-radius: 6px; }
+.gsc-comment-box-main { margin: 0; }
+.gsc-comment-box-write { border: 1px solid var(--color-border-default); border-radius: 12px; }
+.gsc-comment-box-write:focus-within { outline: 2px solid var(--color-accent-fg); outline-offset: 2px; box-shadow: none; }
+.gsc-comment-box-textarea { border: 0; border-radius: 12px; min-height: 132px; padding: 18px; font-size: 15px; line-height: 1.7; }
+.gsc-comment-box-textarea::placeholder { color: var(--color-fg-muted); opacity: 1; }
+.gsc-comment-box-textarea-extras { border: 0; padding: 8px 16px 12px; }
+.gsc-comment-box-preview { border: 1px solid var(--color-border-default); border-radius: 12px; min-height: 176px; padding: 18px; }
+.gsc-comment-box-bottom { margin: 16px 0 0; gap: 12px; flex-wrap: wrap; }
+.gsc-comment-box-buttons .btn { border-radius: 9px; padding: 10px 18px; min-height: 42px; font-weight: 500; }
+.gsc-comment { border-radius: 0; box-shadow: none; }
+.gsc-comment-author-avatar img { border-radius: 50%; }
+.gsc-comment-header { padding-top: 16px; }
+.gsc-comment-content { line-height: 1.8; }
+/* Popovers remain opaque so their text does not overlap underlying comments. */
+.gsc-reactions-menu { background: var(--color-canvas-overlay); }
+@media (max-width: 480px) {
+  .gsc-comment-box-textarea { padding: 14px; min-height: 120px; }
+  .gsc-comment-box-buttons .btn { padding: 9px 12px; }
+}
