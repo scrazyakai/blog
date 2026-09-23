@@ -11,3 +11,32 @@
   --vp-c-brand-3: #1677ff;
   --vp-c-brand-soft: rgb(105 177 255 / 16%);
 }
+
+/* The iframe's inner surfaces are styled in public/comments/. */
+.vp-comment.giscus-wrapper {
+  box-sizing: border-box;
+  padding: 24px;
+  background: transparent;
+  border: 1px solid #a7b1bf;
+  border-radius: 16px;
+}
+
+[data-theme="dark"] .vp-comment.giscus-wrapper {
+  border-color: #647084;
+}
+
+@media (max-width: 480px) {
+  .vp-comment.giscus-wrapper {
+    padding: 16px;
+    border-radius: 12px;
+  }
+}
+
+.vp-comment.giscus-wrapper::before {
+  content: "评论";
+  display: block;
+  margin-bottom: 20px;
+  color: var(--vp-c-text-1);
+  font-size: 20px;
+  font-weight: 600;
+}
