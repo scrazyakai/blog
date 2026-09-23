@@ -50,6 +50,7 @@ export default plumeTheme({
     categoryId: "DIC_kwDOP6b3kM4CwIxi",
   },
   markdown: {
+    mermaid: true,
     math: { type: "katex" },
     image: { lazyload: true, size: true },
     include: {},
