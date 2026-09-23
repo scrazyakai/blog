@@ -6,5 +6,6 @@ export default defineNavbarConfig([
   { text: "分类", link: "/posts/categories/" },
   { text: "标签", link: "/posts/tags/" },
   { text: "归档", link: "/posts/archives/" },
+  { text: "友链", link: "/friends/" },
   { text: "关于", link: "/intro.html" },
 ]);
