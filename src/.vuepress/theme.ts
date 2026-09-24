@@ -4,7 +4,7 @@ import navbar from "./navbar.js";
 import sidebar from "./sidebar.js";
 
 export default plumeTheme({
-  hostname: "https://scrazyakai.github.io",
+  hostname: "https://www.52xinxin.top",
   logo: "/lxh_71.gif",
   docsRepo: "https://github.com/scrazyakai/blog",
   docsBranch: "main",

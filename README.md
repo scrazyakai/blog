@@ -11,7 +11,7 @@ npm ci
 npm run docs:dev
 ```
 
-访问终端显示的本地地址（站点路径为 `/blog/`）。清除缓存后启动可使用 `npm run docs:clean-dev`。
+访问终端显示的本地地址（站点路径为 `/`）。清除缓存后启动可使用 `npm run docs:clean-dev`。
 
 ## 构建
 
@@ -29,3 +29,7 @@ npm run docs:build
 - 导航栏：`src/.vuepress/navbar.ts`。
 - 文章日期使用 `createTime`，标签使用 `tags`，置顶使用 `sticky`。
 - 已关闭自动生成 frontmatter，文章沿用原有 `.html` 地址。
+
+## 自定义域名
+
+线上地址为 https://www.52xinxin.top 。`src/.vuepress/public/CNAME` 随构建发布，以保留 GitHub Pages 自定义域名设置。
