@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TechStack from "./TechStack.vue";
 import HomeDayCycle from "./HomeDayCycle.vue";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { withBase } from "vuepress/client";
 import { isLinkHttp } from "vuepress/shared";
 import { useData } from "vuepress-theme-plume/composables";
@@ -35,6 +35,26 @@ const props = defineProps<{
 }>();
 
 const { isDark } = useData();
+const lightPosition = ref(0);
+const profileLight = computed(() => {
+  const stops = [
+    { x: 0, y: 8, rgb: [255, 177, 119], strength: 0.4 },
+    { x: 18, y: 0, rgb: [255, 225, 170], strength: 0.36 },
+    { x: 45, y: 0, rgb: [235, 245, 255], strength: 0.28 },
+    { x: 72, y: 0, rgb: [255, 190, 91], strength: 0.76 },
+    { x: 100, y: 24, rgb: [255, 132, 65], strength: 0.6 },
+  ];
+  const index = Math.min(3, Math.floor(lightPosition.value));
+  const fraction = lightPosition.value - index;
+  const a = stops[index], b = stops[index + 1];
+  const mix = (a: number, b: number) => a + (b - a) * fraction;
+  return {
+    "--sun-x": `${mix(a.x, b.x)}%`,
+    "--sun-y": `${mix(a.y, b.y)}%`,
+    "--sun-color": a.rgb.map((channel, i) => Math.round(mix(channel, b.rgb[i]))).join(" "),
+    "--sun-strength": mix(a.strength, b.strength),
+  };
+});
 
 const bannerUrl = computed(() => {
   if (!props.banner) return "";
@@ -75,7 +95,7 @@ const dateLabel = (date: string, count: number) =>
     class="home-banner-profile"
     :style="{ backgroundImage: `url(${bannerUrl})` }"
   >
-    <HomeDayCycle />
+    <HomeDayCycle @lighting="lightPosition = $event" />
     <div
       class="home-banner-profile__mask"
       :style="{ opacity: maskOpacity }"
@@ -106,7 +126,7 @@ const dateLabel = (date: string, count: number) =>
         </div>
       </div>
 
-      <aside class="home-banner-profile__profile" aria-label="个人信息、技术栈和 GitHub 贡献">
+      <aside class="home-banner-profile__profile" :style="profileLight" aria-label="个人信息、技术栈和 GitHub 贡献">
         <div class="home-banner-profile__identity">
           <img v-if="avatarUrl" :src="avatarUrl" alt="Recursion 的头像">
           <div>
@@ -261,6 +281,8 @@ const dateLabel = (date: string, count: number) =>
 }
 
 .home-banner-profile__profile {
+  position: relative;
+  isolation: isolate;
   display: grid;
   gap: 24px;
   min-width: 0;
@@ -268,8 +290,38 @@ const dateLabel = (date: string, count: number) =>
   background: rgb(12 17 27 / 52%);
   border: 1px solid rgb(255 255 255 / 14%);
   border-radius: 22px;
-  box-shadow: 0 20px 50px rgb(0 0 0 / 20%);
+  box-shadow: 0 20px 50px rgb(0 0 0 / 24%),
+    0 -10px 45px -18px rgb(var(--sun-color) / var(--sun-strength)),
+    inset 0 1px 0 rgb(var(--sun-color) / var(--sun-strength));
   backdrop-filter: blur(10px);
+}
+
+.home-banner-profile__profile::before,
+.home-banner-profile__profile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Light stays below the content, with a bright glancing reflection on the glass. */
+.home-banner-profile__profile::before {
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 62% 52% at var(--sun-x) var(--sun-y),
+      rgb(var(--sun-color) / .64), rgb(var(--sun-color) / .2) 42%, transparent 78%),
+    linear-gradient(125deg, transparent 32%, rgb(var(--sun-color) / .12) 45%, transparent 60%);
+  opacity: var(--sun-strength);
+}
+
+.home-banner-profile__profile::after {
+  padding: 1.5px;
+  background: radial-gradient(ellipse 70% 65% at var(--sun-x) var(--sun-y),
+    #fff3d7 0%, rgb(var(--sun-color) / .85) 32%, transparent 80%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: var(--sun-strength);
 }
 
 .home-banner-profile__identity {

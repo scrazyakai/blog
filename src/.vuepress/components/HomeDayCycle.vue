@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { withBase } from "vuepress/client";
 
 const frames = [
@@ -11,6 +11,7 @@ const frames = [
 ];
 const hour = ref(6);
 const live = ref(true);
+const emit = defineEmits<{ lighting: [position: number] }>();
 const playing = ref(false);
 const clock = ref("--:--:--");
 const date = ref("");
@@ -28,6 +29,10 @@ const position = computed(() => {
     (frames[index + 1].hour - frames[index].hour);
   return { index, fraction: fraction * fraction * (3 - 2 * fraction) };
 });
+watch(() => [position.value.index, position.value.fraction, live.value] as const,
+  ([index, fraction, realtime]) => {
+    emit("lighting", index + (realtime ? (fraction >= 0.5 ? 1 : 0) : fraction));
+  }, { immediate: true });
 const opacity = (index: number) => {
   // Real-time mode holds one keyframe so the sky never shows two suns.
   if (live.value) return index === position.value.index +
