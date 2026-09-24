@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TechStack from "./TechStack.vue";
+import HomeDayCycle from "./HomeDayCycle.vue";
 import { computed } from "vue";
 import { withBase } from "vuepress/client";
 import { isLinkHttp } from "vuepress/shared";
@@ -74,6 +75,7 @@ const dateLabel = (date: string, count: number) =>
     class="home-banner-profile"
     :style="{ backgroundImage: `url(${bannerUrl})` }"
   >
+    <HomeDayCycle />
     <div
       class="home-banner-profile__mask"
       :style="{ opacity: maskOpacity }"
@@ -187,7 +189,7 @@ const dateLabel = (date: string, count: number) =>
   align-items: center;
   width: min(100% - 64px, 1280px);
   min-height: calc(100vh - var(--vp-nav-height));
-  padding: 64px 0;
+  padding: 120px 0 64px;
   margin: 0 auto;
 }
 
@@ -405,7 +407,7 @@ const dateLabel = (date: string, count: number) =>
     gap: 44px;
     align-content: center;
     width: min(100% - 48px, 720px);
-    padding: 56px 0;
+    padding: 120px 0 64px;
   }
 
   .home-banner-profile__profile {
@@ -418,7 +420,7 @@ const dateLabel = (date: string, count: number) =>
   .home-banner-profile__container {
     gap: 36px;
     width: calc(100% - 40px);
-    padding: 48px 0 36px;
+    padding: 120px 0 64px;
   }
 
   .home-banner-profile__hero h1 {
