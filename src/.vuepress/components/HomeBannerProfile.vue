@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TechStack from "./TechStack.vue";
 import { computed } from "vue";
 import { withBase } from "vuepress/client";
 import { isLinkHttp } from "vuepress/shared";
@@ -103,7 +104,7 @@ const dateLabel = (date: string, count: number) =>
         </div>
       </div>
 
-      <aside class="home-banner-profile__profile" aria-label="个人信息和 GitHub 贡献">
+      <aside class="home-banner-profile__profile" aria-label="个人信息、技术栈和 GitHub 贡献">
         <div class="home-banner-profile__identity">
           <img v-if="avatarUrl" :src="avatarUrl" alt="Recursion 的头像">
           <div>
@@ -120,6 +121,8 @@ const dateLabel = (date: string, count: number) =>
             </a>
           </div>
         </div>
+
+        <TechStack />
 
         <div class="home-banner-profile__contributions">
           <div class="home-banner-profile__contributions-header">
@@ -179,7 +182,7 @@ const dateLabel = (date: string, count: number) =>
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(360px, 1fr) minmax(520px, 590px);
+  grid-template-columns: minmax(360px, 1fr) minmax(560px, 650px);
   gap: clamp(40px, 5vw, 80px);
   align-items: center;
   width: min(100% - 64px, 1280px);
@@ -257,7 +260,8 @@ const dateLabel = (date: string, count: number) =>
 
 .home-banner-profile__profile {
   display: grid;
-  gap: 28px;
+  gap: 24px;
+  min-width: 0;
   padding: 34px 36px 30px;
   background: rgb(12 17 27 / 52%);
   border: 1px solid rgb(255 255 255 / 14%);
@@ -272,7 +276,7 @@ const dateLabel = (date: string, count: number) =>
   align-items: center;
 }
 
-.home-banner-profile__profile img {
+.home-banner-profile__identity img {
   width: 124px;
   height: 124px;
   object-fit: cover;
@@ -444,7 +448,7 @@ const dateLabel = (date: string, count: number) =>
     gap: 18px;
   }
 
-  .home-banner-profile__profile img {
+  .home-banner-profile__identity img {
     width: 86px;
     height: 86px;
   }
