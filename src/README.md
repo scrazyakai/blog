@@ -11,7 +11,7 @@ config:
     hero:
       name: 青云小筑
       tagline: 心安之处即桃源
-      text: 一个后端开发者的学习与记录
+      text: 个人开发的学习与记录
       actions:
         - text: 阅读博文
           link: /posts/
@@ -21,7 +21,7 @@ config:
           theme: alt
     profile:
       name: Recursion
-      description: 一个后端开发者
+      description: 全栈开发/后端开发/AI应用开发/全干牛马
       avatar: /lxh_71.gif
       github: scrazyakai
 ---
