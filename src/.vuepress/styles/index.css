@@ -12,6 +12,22 @@
   --vp-c-brand-soft: rgb(105 177 255 / 16%);
 }
 
+/* Match flat article groups to the nested React article list. */
+.vp-sidebar-item.level-0 > div > .items:has(> .is-link) {
+  padding-left: 16px;
+  border-left: 1px solid var(--vp-c-divider);
+  transition: border-left var(--vp-t-color);
+}
+
+.vp-sidebar-item.is-link > .item > .vp-icon,
+.vp-sidebar-item.is-link > .item > .vp-icon-img {
+  display: none;
+}
+
+.vp-sidebar-item.level-1.is-active > .item > .indicator {
+  width: 1px;
+}
+
 /* The iframe's inner surfaces are styled in public/comments/. */
 .vp-comment.giscus-wrapper {
   box-sizing: border-box;

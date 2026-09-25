@@ -16,7 +16,7 @@ export default plumeTheme({
   profile: {
     name: "Recursion",
     avatar: "/lxh_71.gif",
-    description: "一个后端开发者",
+    description: "全栈开发/后端开发/AI应用开发/全干牛马",
   },
   social: [
     { icon: "github", link: "https://github.com/scrazyakai?tab=repositories" },
