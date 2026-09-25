@@ -18,6 +18,8 @@ const focus = [
 </script>
 
 <template>
+  <div class="about-landscape">
+    <img class="about-background" :src="withBase('/assets/images/about-mountains.webp')" alt="" aria-hidden="true" width="1536" height="1024">
   <main class="about-profile">
     <section class="about-hero" aria-labelledby="about-title">
       <div class="about-intro">
@@ -63,9 +65,17 @@ const focus = [
     </div>
     <p class="about-signoff">在技术的路上，记录 · 思考 · 前行</p>
   </main>
+  </div>
 </template>
 
 <style scoped>
+.about-landscape { position: relative; isolation: isolate; overflow: hidden; background: var(--vp-c-bg); }
+.about-background { position: absolute; z-index: -1; inset: 0 0 auto; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: .38; pointer-events: none; }
+:global([data-theme="light"] .about-landscape) { background: #f5f8fc; --vp-c-text-1: #172b42; --vp-c-text-2: #304760; --vp-c-text-3: #4f6680; --vp-c-divider: rgb(47 73 102 / 22%); }
+:global([data-theme="dark"] .about-landscape) { background: #101923; --vp-c-text-1: #f1f3f5; --vp-c-text-2: #c2cbd5; --vp-c-text-3: #9baab9; --vp-c-divider: rgb(184 204 226 / 19%); }
+:global([data-theme="dark"] .about-background) { opacity: .78; }
+@media (max-width: 640px) { .about-background { height: 100%; object-position: 38% top; } }
+
 .about-profile { max-width: 1440px; margin: 0 auto; padding: 40px 40px 0; color: var(--vp-c-text-1); }
 .about-profile h1, .about-profile h2, .about-profile h3, .about-profile p { margin: 0; }
 .about-hero { display: grid; grid-template-columns: 1.45fr 1fr; align-items: center; min-height: 440px; gap: 16px; padding: 10px 0 34px; }
