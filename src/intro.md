@@ -1,8 +1,8 @@
 ---
-icon: fa6-solid:circle-info
-cover: /assets/images/cover3.jpg
+title: 关于我
+description: 认识 Recursion，了解我的技术方向与最近的学习记录。
+pageLayout: home
+config:
+  - type: AboutProfile
+    full: true
 ---
-
-# 介绍页
-
-将你的个人介绍和档案放置在此处。

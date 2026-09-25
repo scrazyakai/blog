@@ -2,6 +2,7 @@ import { defineClientConfig } from "vuepress/client";
 import { withBase } from "vuepress/client";
 import { defineGiscusConfig } from "@vuepress/plugin-comment/client";
 import HomeBannerProfile from "./components/HomeBannerProfile.vue";
+import AboutProfile from "./components/AboutProfile.vue";
 import "./styles/index.css";
 
 export default defineClientConfig({
@@ -16,5 +17,6 @@ export default defineClientConfig({
       });
     }
     app.component("HomeBannerProfile", HomeBannerProfile);
+    app.component("AboutProfile", AboutProfile);
   },
 });
