@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { withBase } from 'vuepress/client';
-const stack = [
-  ['Java', 'java'], ['Spring Boot', 'spring'], ['MySQL', 'mysql'],
-  ['Redis', 'redis'], ['Docker', 'docker'], ['Git', 'git'],
-  ['Python', 'python'], ['JavaScript', 'javascript'], ['TypeScript', 'typescript'],
-];
+import { technologyStack as stack } from '../data/tech-stack';
 const exploring = [['React', 'react.svg'], ['LLM', 'llm.png'], ['PostgreSQL', 'postgresql.svg']];
 </script>
 
