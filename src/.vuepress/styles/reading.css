@@ -10,9 +10,9 @@
 }
 .reading-scene.large-reading-text { --reading-font-size: 20px; }
 .reading-scene .vp-doc-container { padding: 0; }
-.reading-scene .vp-doc-container > .container { display: grid !important; grid-template-columns: minmax(0, 880px) 260px; gap: 24px; align-items: start; max-width: 1184px !important; margin: 0 auto; }
-.reading-scene .vp-doc-container > .container > .content { order: 1; width: 100%; max-width: none; min-width: 0; margin: 0; padding: 30px 42px 40px; border: 1px solid var(--land-line); border-radius: 24px; background: rgb(24 35 46 / 91%); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
-.reading-scene .vp-doc-container .content-container { max-width: none; }
+.reading-scene .vp-doc-container > .container { display: grid !important; width: calc(100% - 48px); grid-template-columns: minmax(0, 1fr) 260px; gap: 28px; align-items: start; max-width: 1680px !important; margin: 0 auto; }
+.reading-scene .vp-doc-container > .container > .content { order: 1; width: 100%; max-width: none !important; min-width: 0; margin: 0; padding: 34px 56px 44px; border: 1px solid var(--land-line); border-radius: 24px; background: rgb(24 35 46 / 91%); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+.reading-scene .vp-doc-container .content-container { max-width: none !important; }
 .reading-scene .vp-doc-container > .container > .aside { display: block; position: sticky; top: calc(var(--vp-nav-height) + 24px); order: 2; min-width: 0; width: 100%; max-width: none; padding: 0; }
 .reading-scene .aside-container { position: static; width: auto; height: auto; max-height: calc(100vh - var(--vp-nav-height) - 48px); padding: 24px 18px; overflow: auto; scrollbar-width: thin; border: 1px solid var(--land-line); border-radius: 20px; background: rgb(24 35 46 / 82%); backdrop-filter: blur(18px); }
 .reading-scene .aside-content { min-height: 0; padding-bottom: 0; }
@@ -53,8 +53,8 @@
 [data-theme=light] .reading-scene { --vp-c-text-1: #182c40; --vp-c-text-2: #334b61; --vp-c-text-3: #53687c; --vp-c-divider: rgb(50 75 99 / 20%); --vp-c-bg: #f4f8fc; --vp-code-block-bg: #eaf0f6; }
 [data-theme=light] .reading-scene .vp-doc-container > .container > .content { background: rgb(247 250 253 / 95%); }
 [data-theme=light] .reading-scene .aside-container { background: rgb(238 245 251 / 91%); }
-@media(min-width:1101px) { .reading-scene .vp-doc-container:not(.has-aside) > .container { grid-template-columns: minmax(0,880px); justify-content: center; } }
-@media(max-width:1100px) { .reading-scene .vp-doc-container > .container { grid-template-columns: minmax(0,880px); justify-content: center; } .reading-scene .vp-doc-container > .container > .aside { display: none; } .reading-mobile-outline { display: block; } }
+@media(min-width:1200px) { .reading-scene .vp-doc-container:not(.has-aside) > .container { grid-template-columns: minmax(0,1280px); justify-content: center; } }
+@media(max-width:1199px) { .reading-scene .vp-doc-container > .container { grid-template-columns: minmax(0,1020px); justify-content: center; } .reading-scene .vp-doc-container > .container > .aside { display: none; } .reading-mobile-outline { display: block; } }
 @media(max-width:959px) { .reading-scene { padding-top: calc(var(--vp-nav-height) + 24px); } }
 @media(max-width:700px) { .reading-scene .vp-doc-container > .container > .content { padding: 20px; border-radius: 20px; } .reading-scene .page-title { font-size: 28px; } .reading-scene { --reading-font-size: 16px; } .reading-scene.large-reading-text { --reading-font-size: 18px; } .reading-scene .vp-doc h2 { font-size: 23px; } .reading-scene .vp-doc h3 { font-size: 20px; } .reading-scene .vp-doc-meta { font-size: 12px; gap: 10px; } .reading-toolbar { font-size: 13px; } .reading-toolbar button { min-height: 34px; padding: 4px 10px; } .reading-scene .vp-doc div[class*=language-] { margin: 20px 0; } }
 @media print { .reading-scene { padding: 0; color: #111; --vp-c-text-1: #111; --vp-c-text-2: #333; } .reading-scene .landscape-backdrop,.reading-toolbar,.reading-mobile-outline,.reading-scene .aside { display: none !important; } .reading-scene .vp-doc-container > .container { display: block; } .reading-scene .vp-doc-container > .container > .content { background: white; border: 0; padding: 0; backdrop-filter: none; } }
