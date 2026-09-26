@@ -1,5 +1,6 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
+import { fileURLToPath } from "node:url";
 
 import theme from "./theme.js";
 
@@ -8,6 +9,18 @@ export default defineUserConfig({
   lang: "zh-CN",
   title: "青云小筑",
   description: "青云小筑",
+  plugins: [{
+    name: "posts-index-design",
+    alias: {
+      "@theme/Posts/VPPosts.vue": fileURLToPath(new URL("./components/PostsLayout.vue", import.meta.url)),
+    },
+    extendsPage(page) {
+      if (page.path === "/posts/") {
+        page.frontmatter.sidebar = false;
+        page.frontmatter.pageClass = "posts-index-page";
+      }
+    },
+  }],
   bundler: viteBundler({
     viteOptions: {
       plugins: [{
