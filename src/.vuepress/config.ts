@@ -10,14 +10,19 @@ export default defineUserConfig({
   title: "青云小筑",
   description: "青云小筑",
   plugins: [{
-    name: "posts-index-design",
+    name: "blog-landscape-design",
     alias: {
       "@theme/Posts/VPPosts.vue": fileURLToPath(new URL("./components/PostsLayout.vue", import.meta.url)),
+      "@theme/VPDoc.vue": fileURLToPath(new URL("./components/ReadingLayout.vue", import.meta.url)),
+      "@theme/VPFriends.vue": fileURLToPath(new URL("./components/FriendsPage.vue", import.meta.url)),
     },
     extendsPage(page) {
       if (page.path === "/posts/") {
         page.frontmatter.sidebar = false;
         page.frontmatter.pageClass = "posts-index-page";
+      } else if (page.path.startsWith("/posts/") || page.path === "/friends/") {
+        page.frontmatter.sidebar = false;
+        page.frontmatter.pageClass = [page.frontmatter.pageClass, "landscape-page"].filter(Boolean).join(" ");
       }
     },
   }],

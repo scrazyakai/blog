@@ -122,7 +122,7 @@ async function changePage(page: number) {
 .posts-landscape { position: relative; isolation: isolate; min-height: calc(100vh - var(--vp-nav-height)); padding: 54px 24px 56px; color: #eff2f5; --posts-muted: #e0e5ea; --posts-accent: #79beff; }
 .posts-scenery { position: fixed; inset: var(--vp-nav-height) 0 0; z-index: -1; background: #1d2b39; pointer-events: none; }
 .posts-scenery img { width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: .65; }
-.posts-panel { max-width: 1184px; margin: 0 auto; padding: 28px 40px 18px; border: 1px solid rgb(226 235 243 / 44%); border-radius: 28px; background: rgb(22 29 35 / 52%); box-shadow: 0 1px 1px rgb(255 255 255 / 16%) inset, 0 12px 36px rgb(5 14 20 / 10%); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); scroll-margin-top: calc(var(--vp-nav-height) + 20px); }
+.posts-panel { max-width: 1184px; margin: 0 auto; padding: 28px 40px 18px; border: 1px solid rgb(226 235 243 / 44%); border-radius: 28px; background: rgb(22 29 35 / 52%); box-shadow: 0 1px 1px rgb(255 255 255 / 16%) inset, 0 12px 36px rgb(5 14 20 / 10%); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); scroll-margin-top: calc(var(--vp-nav-height) + 20px); }
 .posts-panel h1, .posts-panel h2, .posts-panel p { margin: 0; }
 .posts-heading { padding-bottom: 18px; border-bottom: 1px solid rgb(220 231 241 / 25%); }
 .posts-heading h1 { font-size: 36px; font-weight: 650; line-height: 1.45; }
