@@ -13,6 +13,7 @@ export default defineUserConfig({
     name: "blog-landscape-design",
     alias: {
       "@theme/Posts/VPPosts.vue": fileURLToPath(new URL("./components/PostsLayout.vue", import.meta.url)),
+      "@theme/VPDocAsideOutline.vue": fileURLToPath(new URL("./components/ReadingOutline.vue", import.meta.url)),
       "@theme/VPDoc.vue": fileURLToPath(new URL("./components/ReadingLayout.vue", import.meta.url)),
       "@theme/VPFriends.vue": fileURLToPath(new URL("./components/FriendsPage.vue", import.meta.url)),
     },
