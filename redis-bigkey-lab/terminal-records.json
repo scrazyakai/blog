@@ -1,0 +1,148 @@
+[
+  [
+    "01-bigkeys",
+    "redis-cli --bigkeys",
+    [
+      "$ docker exec -it redis-test redis-cli -n 3 --bigkeys",
+      "[00.00%] Biggest hash found so far \"lab:bigkey:20260929:hash100k\" with 100000 fields",
+      "[00.00%] Biggest string found so far \"lab:bigkey:20260929:string32m\" with 33554432 bytes",
+      "",
+      "Sampled 4 keys in the keyspace!",
+      "2 hashs with 200000 fields (50.00% of keys, avg size 100000.00)",
+      "2 strings with 33554437 bytes (50.00% of keys, avg size 16777218.50)"
+    ]
+  ],
+  [
+    "02-memory",
+    "MEMORY USAGE",
+    [
+      "127.0.0.1:6379[3]> MEMORY USAGE lab:bigkey:20260929:hash100k",
+      "(integer) 21572992"
+    ]
+  ],
+  [
+    "03-hlen",
+    "HLEN",
+    [
+      "127.0.0.1:6379[3]> HLEN lab:bigkey:20260929:hash100k",
+      "(integer) 100000"
+    ]
+  ],
+  [
+    "04-bitcount",
+    "BITCOUNT",
+    [
+      "127.0.0.1:6379[3]> BITCOUNT lab:bigkey:20260929:string32m",
+      "(integer) 134217728"
+    ]
+  ],
+  [
+    "05-latency",
+    "LATENCY LATEST",
+    [
+      "127.0.0.1:6379[3]> LATENCY LATEST",
+      "1) 1) \"command\"",
+      "   2) (integer) 1790645563",
+      "   3) (integer) 15",
+      "   4) (integer) 15"
+    ]
+  ],
+  [
+    "06-small",
+    "GET small / SLOWLOG (excerpt)",
+    [
+      "GET lab:bigkey:20260929:small",
+      "Result: \"hello\"",
+      "",
+      "SLOWLOG entry:",
+      "1) (integer) 22846",
+      "2) (integer) 1790646103",
+      "3) (integer) 5",
+      "4) 1) \"GET\"",
+      "   2) \"lab:bigkey:20260929:small\""
+    ]
+  ],
+  [
+    "07-backpressure",
+    "CLIENT LIST TYPE normal (excerpt)",
+    [
+      "127.0.0.1:6379[3]> CLIENT LIST TYPE normal",
+      "id=219",
+      "name=bigkey-lab-slow-reader",
+      "db=3  age=15  idle=15",
+      "obl=0  oll=1  omem=33554456",
+      "tot-mem=33556384  events=rw  cmd=get"
+    ]
+  ],
+  [
+    "08-del",
+    "DEL / SLOWLOG (excerpt)",
+    [
+      "DEL lab:bigkey:20260929:hash100k-delete",
+      "Result: (integer) 1",
+      "",
+      "SLOWLOG entry:",
+      "1) (integer) 76398",
+      "2) (integer) 1790646652",
+      "3) (integer) 20357",
+      "4) 1) \"DEL\"",
+      "   2) \"lab:bigkey:20260929:hash100k-delete\""
+    ]
+  ],
+  [
+    "09-unlink",
+    "UNLINK / SLOWLOG (excerpt)",
+    [
+      "UNLINK lab:bigkey:20260929:hash100k",
+      "Result: (integer) 1",
+      "",
+      "SLOWLOG entry:",
+      "1) (integer) 78747",
+      "2) (integer) 1790646676",
+      "3) (integer) 41",
+      "4) 1) \"UNLINK\"",
+      "   2) \"lab:bigkey:20260929:hash100k\""
+    ]
+  ],
+  [
+    "10-shard-hlen",
+    "HLEN / shard 00",
+    [
+      "127.0.0.1:6379[3]> HLEN lab:bigkey:20260929:hash-shard:00",
+      "(integer) 6220"
+    ]
+  ],
+  [
+    "11-shard-memory",
+    "MEMORY USAGE / shard 00",
+    [
+      "127.0.0.1:6379[3]> MEMORY USAGE lab:bigkey:20260929:hash-shard:00",
+      "(integer) 1309672"
+    ]
+  ],
+  [
+    "12-config",
+    "CONFIG SET",
+    [
+      "127.0.0.1:6379[3]> CONFIG SET latency-monitor-threshold 1",
+      "OK"
+    ]
+  ],
+  [
+    "13-history",
+    "LATENCY HISTORY",
+    [
+      "127.0.0.1:6379[3]> LATENCY HISTORY command",
+      "1) 1) (integer) 1790645563",
+      "   2) (integer) 15"
+    ]
+  ],
+  [
+    "14-graph",
+    "LATENCY GRAPH (header excerpt)",
+    [
+      "127.0.0.1:6379[3]> LATENCY GRAPH command",
+      "command - high 15 ms, low 15 ms (all time high 15 ms)"
+    ]
+  ]
+]
