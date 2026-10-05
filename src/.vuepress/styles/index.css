@@ -56,3 +56,9 @@
   font-size: 20px;
   font-weight: 600;
 }
+
+/* Keep footnote destinations clear of the fixed navigation. */
+.footnote-item,
+.footnote-anchor {
+  scroll-margin-top: calc(var(--vp-nav-height, 64px) + 24px);
+}

@@ -102,7 +102,7 @@ Payload 的正确拼写是 **Payload**，里面的字段叫 Claim（声明）。
 | `nbf` | 生效时间 | 在此时间之前不能接受 |
 | `refresh` | 自定义字段 | 本文用布尔值区分访问令牌与刷新令牌 |
 
-这些注册声明不是全部天然必填；应用应明确自己要求哪些字段。时间字段使用 Unix 时间戳，单位是秒。`refresh` 不是 JWT 标准字段。[1]
+这些注册声明不是全部天然必填；应用应明确自己要求哪些字段。时间字段使用 Unix 时间戳，单位是秒。`refresh` 不是 JWT 标准字段。[^1]
 
 用户 ID 可以放在 `sub` 中，也可以由项目自定义字段存储。服务端读取时，应与签发时的结构保持一致。
 
@@ -137,7 +137,7 @@ JWT_ALGORITHM: str
 
 对于 HS256，签发方和验证方使用同一密钥。对于 RS256，签发方使用私钥，验证方使用公钥。密钥应通过配置或秘密管理机制提供，不能直接照搬公开教程里的示例值。
 
-验签不是“和服务端保存的某个固定签名比较”。每个 JWT 的内容可能不同，所以签名也不同；服务端验证的是这一个 Token 的签名与其内容是否匹配。[2]
+验签不是“和服务端保存的某个固定签名比较”。每个 JWT 的内容可能不同，所以签名也不同；服务端验证的是这一个 Token 的签名与其内容是否匹配。[^2]
 
 ### 实现签发与验证函数
 
@@ -182,7 +182,7 @@ def decode_token(token: str) -> dict:
     )
 ```
 
-`jwt.decode()` 在这里会验签、验证相关声明，不是仅仅做 Base64 解码。明确 `require` 可以拒绝缺少必需字段的令牌；字段存在之后，应用还要验证自定义字段类型和语义。[3]
+`jwt.decode()` 在这里会验签、验证相关声明，不是仅仅做 Base64 解码。明确 `require` 可以拒绝缺少必需字段的令牌；字段存在之后，应用还要验证自定义字段类型和语义。[^3]
 
 ## 5. 编写登录接口
 
@@ -250,7 +250,7 @@ flowchart TD
 
 这是一种应用层逻辑顺序，不要求每个 JWT 库内部采用完全相同的检查顺序。关键是：**不能信任未经验证的声明，也不能只验签就执行所有业务。**
 
-通常还要检查 `exp`、预期的 `iss` 和 `aud`，确认令牌用途，以及按业务需要检查用户是否被禁用、是否有资源权限。[2]
+通常还要检查 `exp`、预期的 `iss` 和 `aud`，确认令牌用途，以及按业务需要检查用户是否被禁用、是否有资源权限。[^2]
 
 认证回答“你是谁”，授权回答“你能做什么”。用户登录有效，也不意味着可以删除别人的书籍。
 
@@ -258,7 +258,7 @@ flowchart TD
 
 下方依赖会查询 Redis，因此先准备这两个辅助函数；退出章节会解释为什么需要它们。
 
-使用 redis-py 的异步接口 `redis.asyncio`：[5]
+使用 redis-py 的异步接口 `redis.asyncio`：[^5]
 
 ```python
 import math
@@ -292,7 +292,7 @@ async def revoke_token(claims: dict, redis_client: redis.Redis) -> None:
         )
 ```
 
-**管理连接生命周期**是指：启动时创建 Redis 客户端与连接池，处理请求时复用，关闭时释放连接。[7]
+**管理连接生命周期**是指：启动时创建 Redis 客户端与连接池，处理请求时复用，关闭时释放连接。[^7]
 
 `yield` 前执行启动准备；应用运行期间暂停在 `yield`；关闭时执行 `finally` 中的清理。`from_url()` 创建客户端与连接池，实际连接通常在首次 Redis 操作时建立。`aclose()` 关闭客户端及其拥有的连接池，不是删除 Redis 数据。
 
@@ -304,7 +304,7 @@ Redis 不可用时，不能悄悄跳过撤销检查并把请求视为成功。
 
 **Bearer 是令牌的使用方式，JWT 是令牌格式，二者不等同。** `Authorization: Bearer <token>` 中的令牌可以是 JWT，也可以是一个随机字符串。本文使用 JWT 作为 Bearer Token。
 
-FastAPI 的 `HTTPBearer` 解析请求头、检查 Bearer 形式，并返回 `HTTPAuthorizationCredentials` 对象。例如请求头是 `Authorization: Bearer abc123`，结果包含：[6]
+FastAPI 的 `HTTPBearer` 解析请求头、检查 Bearer 形式，并返回 `HTTPAuthorizationCredentials` 对象。例如请求头是 `Authorization: Bearer abc123`，结果包含：[^6]
 
 ```python
 credentials.scheme       # "Bearer"
@@ -432,7 +432,7 @@ async def get_books(
 current_timestamp >= exp  # 没有时钟容差时，已经过期
 ```
 
-库可以配置少量时钟容差，但这不改变“过期时间在签发时已经确定”的原理。[1][3]
+库可以配置少量时钟容差，但这不改变“过期时间在签发时已经确定”的原理。[^1][^3]
 
 前端不能自行把 `exp` 调大，因为 Payload 改变后，原签名会失效。只有持有签发密钥的一方才能签发新的有效 Token。
 
@@ -513,7 +513,7 @@ Refresh R：jti = token-r
 
 签名与 `exp` 能证明令牌没有被篡改、仍在有效期内，却不能自动表达“用户刚刚退出登录”。仅删除浏览器里的 Token，只会让当前客户端不再使用它；别人已经拿到的副本仍可能有效。
 
-一种解决办法是用 Redis 保存被撤销令牌的 `jti`。请求经过 JWT 验证后，再查黑名单。教程采用的就是这一路径。[4]
+一种解决办法是用 Redis 保存被撤销令牌的 `jti`。请求经过 JWT 验证后，再查黑名单。教程采用的就是这一路径。[^4]
 
 | 策略 | 服务端记录什么 | jti 存在意味着什么 |
 | --- | --- | --- |
@@ -660,7 +660,7 @@ GET /books
 Cookie: session_id=a_random_session_id
 ```
 
-服务端查询这个 Session ID 对应的会话，确认它有效，再确定当前用户。Cookie 的设置、发送和会话登录示例见参考资料 [8]。
+服务端查询这个 Session ID 对应的会话，确认它有效，再确定当前用户。Cookie 的设置、发送和会话登录示例见参考资料 [^8]。
 
 ### 两种方案的主要区别
 
@@ -693,11 +693,11 @@ Cookie 自动发送的特点需要结合 SameSite 和 CSRF 防护考虑。HttpOn
 
 ## 参考资料
 
-1. [RFC 7519：JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519)，尤其是注册声明与有效期定义。
-2. [RFC 8725：JWT Best Current Practices](https://www.rfc-editor.org/rfc/rfc8725)，算法验证、签发者与使用方检查、不同令牌用途的验证规则。
-3. [PyJWT：Usage Examples](https://pyjwt.readthedocs.io/en/stable/usage.html)，编码、解码、过期验证和必需声明。
-4. [FastAPI Beyond CRUD：JWT Authentication](https://jod35.github.io/fastapi-beyond-crud-docs/site/chapter9/#revoking-tokens-using-redis)，本文讨论的教程来源。
-5. [redis-py：Asyncio Examples](https://redis.readthedocs.io/en/stable/examples/asyncio_examples.html)，异步 Redis 接口与连接关闭。
-6. [FastAPI：Security Tools](https://fastapi.tiangolo.com/reference/security/)，HTTPBearer 与凭据对象。
-7. [FastAPI：Lifespan Events](https://fastapi.tiangolo.com/advanced/events/)，启动和关闭时的资源管理。
-8. [MDN：Using HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies)，Cookie 的设置、发送和会话登录示例。
+[^1]: [<img src="/assets/icons/references/rfc.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> RFC 7519：JSON Web Token](https://www.rfc-editor.org/rfc/rfc7519)，尤其是注册声明与有效期定义。
+[^2]: [<img src="/assets/icons/references/rfc.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> RFC 8725：JWT Best Current Practices](https://www.rfc-editor.org/rfc/rfc8725)，算法验证、签发者与使用方检查、不同令牌用途的验证规则。
+[^3]: [<img src="/assets/icons/references/readthedocs.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> PyJWT：Usage Examples](https://pyjwt.readthedocs.io/en/stable/usage.html)，编码、解码、过期验证和必需声明。
+[^4]: [<img src="/assets/icons/references/web.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> FastAPI Beyond CRUD：JWT Authentication](https://jod35.github.io/fastapi-beyond-crud-docs/site/chapter9/#revoking-tokens-using-redis)，本文讨论的教程来源。
+[^5]: [<img src="/assets/icons/references/readthedocs.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> redis-py：Asyncio Examples](https://redis.readthedocs.io/en/stable/examples/asyncio_examples.html)，异步 Redis 接口与连接关闭。
+[^6]: [<img src="/assets/icons/references/fastapi.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> FastAPI：Security Tools](https://fastapi.tiangolo.com/reference/security/)，HTTPBearer 与凭据对象。
+[^7]: [<img src="/assets/icons/references/fastapi.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> FastAPI：Lifespan Events](https://fastapi.tiangolo.com/advanced/events/)，启动和关闭时的资源管理。
+[^8]: [<img src="/assets/icons/references/mdn.svg" alt="" width="16" height="16" style="display: inline-block; vertical-align: -0.125em; margin: 0;" /> MDN：Using HTTP cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies)，Cookie 的设置、发送和会话登录示例。
